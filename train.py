@@ -35,8 +35,8 @@ with tf.Graph().as_default():
     with tf.name_scope('accuracy'):
         accuracy = tf.reduce_mean(tf.cast(tf.equal(tf.argmax(logits, 1), tf.argmax(batch_labels, 1)), np.float32))
         tf.summary.scalar('accuracy', accuracy)
-    global_step = tf.Variable(0, name='global_step', trainable=False) 
-    decay_step = EPOCHS_PER_LR_DECAY * len(train_video_indices) // BATCH_SIZE
+    #global_step = tf.Variable(0, name='global_step', trainable=False) 
+    #decay_step = EPOCHS_PER_LR_DECAY * len(train_video_indices) // BATCH_SIZE
     learning_rate = 1e-4#tf.train.exponential_decay(INITIAL_LEARNING_RATE, global_step, decay_step, LR_DECAY_FACTOR, staircase=True)
     optimizer = tf.train.AdamOptimizer(learning_rate).minimize(loss)#, global_step=global_step)
     saver = tf.train.Saver()
