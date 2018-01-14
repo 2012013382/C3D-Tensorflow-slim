@@ -93,6 +93,5 @@ def get_batches(filename, num_classes, batch_index, video_indices, batch_size=10
     for i in range(len(labels)):
         oh_labels[i, labels[i]] = 1
     batch_index = batch_index + batch_size
-    #Convert to numpy
     batch_data = {'clips': clips, 'labels': oh_labels}
     return batch_data, batch_index
