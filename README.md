@@ -3,6 +3,8 @@ A simple Tensorflow code for C3D
 ## Reqirements
 Tensorflow(>=1.4)
 Python(>=2.7)
+## Dataset
+UCF101. You need to place it in the root directory of the workspace.
 ## Usage
 ```Bash
 sudo ./convert_video_to_images.sh UCF101/ 5
