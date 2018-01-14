@@ -11,7 +11,7 @@ to convert videos into images(5FPS per-second).
 ```Bash
 ./convert_images_to_list.sh UCF101/ 4
 ```
-to obtain train and test sets.
+to obtain train and test sets.(3/4 train; 1/4 test)
 ```Bash
 python train.py
 ```
@@ -20,4 +20,7 @@ for training.
 python test.py
 ```
 for testing.
+## Attention
+Radom choose 16 frames as a clip to represent a video for training and testing.
 ## Result
+0.71 on the test set after 40 epoch.
