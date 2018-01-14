@@ -12,7 +12,9 @@ import cv2
 VALIDATION_PRO = 0.2
 
 np_mean = np.load('crop_mean.npy').reshape([CLIP_LENGTH, 112, 112, 3])
-
+def get_test_num(filename):
+    lines = open(filename, 'r')
+    return len(list(lines))
 def get_video_indices(filename):
     lines = open(filename, 'r')
     #Shuffle data
