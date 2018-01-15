@@ -25,6 +25,6 @@ for testing.
 ## Attention
 Radom choose 16 frames as a clip to represent a video for training and testing.
 ## Result
-0.71 on the test set after 40 epoch.
+0.71 on the test set after 36 epoches.
 ## Reference
 The files convert_video_to_images.sh and convert_images_to_list.sh are copied from https://github.com/hx173149/C3D-tensorflow
