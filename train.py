@@ -26,7 +26,8 @@ train_video_indices, validation_video_indices = data_processing.get_video_indice
 with tf.Graph().as_default():
     batch_clips = tf.placeholder(np.float32, [BATCH_SIZE, CLIP_LENGTH, CROP_SZIE, CROP_SZIE, CHANNEL_NUM], name='X')
     batch_labels = tf.placeholder(np.int32, [BATCH_SIZE, NUM_CLASSES], name='Y')
-    logits = C3D_model.C3D(batch_clips, NUM_CLASSES, 0.5)
+    keep_prob = tf.placeholder(np.float32)
+    logits = C3D_model.C3D(batch_clips, NUM_CLASSES, keep_prob)
 
     with tf.name_scope('loss'):
         loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=batch_labels))
@@ -58,7 +59,8 @@ with tf.Graph().as_default():
                                                          train_video_indices, BATCH_SIZE)
                 _, loss_out, accuracy_out, summary = sess.run([optimizer, loss, accuracy, summary_op],
                                                               feed_dict={batch_clips:batch_data['clips'],
-                                                              batch_labels:batch_data['labels']})
+                                                              batch_labels:batch_data['labels'],
+                                                                        keep_prob: 0.5})
                 loss_epoch += loss_out
                 accuracy_epoch += accuracy_out
 
@@ -76,7 +78,8 @@ with tf.Graph().as_default():
                                                                       validation_video_indices, BATCH_SIZE)
                 loss_out, accuracy_out = sess.run([loss, accuracy],
                                                   feed_dict={batch_clips:batch_data['clips'],
-                                                             batch_labels:batch_data['labels']})
+                                                             batch_labels:batch_data['labels'],
+                                                            keep_prob: 1.0})
                 loss_epoch += loss_out
                 accuracy_epoch += accuracy_out
 
