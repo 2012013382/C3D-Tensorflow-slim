@@ -36,7 +36,8 @@ with tf.Graph().as_default():
             batch_data, batch_index = data_processing.get_batches(TEST_LIST_PATH, NUM_CLASSES, batch_index,
                                                               test_video_indices, BATCH_SIZE)
             accuracy_out = sess.run(accuracy,feed_dict={batch_clips: batch_data['clips'],
-                                                     batch_labels: batch_data['labels']})
+                                                     batch_labels: batch_data['labels'],
+                                                       keep_prob: 1.0})
             accuracy_epoch += accuracy_out
 
     print('Test accuracy is %.5f' % (accuracy_epoch / (test_num // BATCH_SIZE)))
