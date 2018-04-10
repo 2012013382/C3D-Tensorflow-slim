@@ -24,9 +24,9 @@ MOVING_AV_DECAY = 0.9999
 train_video_indices, validation_video_indices = data_processing.get_video_indices(TRAIN_LIST_PATH)
 
 with tf.Graph().as_default():
-    batch_clips = tf.placeholder(np.float32, [BATCH_SIZE, CLIP_LENGTH, CROP_SZIE, CROP_SZIE, CHANNEL_NUM], name='X')
-    batch_labels = tf.placeholder(np.int32, [BATCH_SIZE, NUM_CLASSES], name='Y')
-    keep_prob = tf.placeholder(np.float32)
+    batch_clips = tf.placeholder(tf.float32, [BATCH_SIZE, CLIP_LENGTH, CROP_SZIE, CROP_SZIE, CHANNEL_NUM], name='X')
+    batch_labels = tf.placeholder(tf.int32, [BATCH_SIZE, NUM_CLASSES], name='Y')
+    keep_prob = tf.placeholder(tf.float32)
     logits = C3D_model.C3D(batch_clips, NUM_CLASSES, keep_prob)
 
     with tf.name_scope('loss'):
