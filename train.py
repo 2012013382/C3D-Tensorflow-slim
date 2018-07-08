@@ -32,7 +32,7 @@ with tf.Graph().as_default():
     with tf.name_scope('loss'):
         lr_loss = slim.losses.get_regularization_losses()
         loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=batch_labels))
-        loss = loss + tf.reduce_mean(r_loss)
+        loss = loss + tf.reduce_mean(lr_loss)
         tf.summary.scalar('entropy_loss', loss)
 
     with tf.name_scope('accuracy'):
